@@ -18,7 +18,7 @@ spring:
           enable: true
       routes:
         - id: ms-auth-service
-          uri: lb://ms-rol
+          uri: lb://ms-auth-service
           predicates:
             - Path=/rol/**
 

@@ -1,6 +1,6 @@
 server:
   port: 8081
-  
+
 spring:
   application:
     name: ms-auth-service
@@ -20,9 +20,3 @@ springdoc:
   swagger-ui:
     enabled: true
     path: /doc/swagger-ui.html
-eureka:
- client:
-   serviceUrl:
-     defaultZone: http://localhost:8090/eureka
- instance:
-   hostname: localhost

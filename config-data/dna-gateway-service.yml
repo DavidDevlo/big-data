@@ -21,11 +21,4 @@ spring:
           uri: lb://ms-auth-service
           predicates:
             - Path=/rol/**
-        - id: dna-usuario-service
-          uri: lb://dna-usuario-service
-          predicates:
-            - Path=/usuarios/**
-        - id: dna-prestamo-service
-          uri: lb://dna-prestamo-service
-          predicates:
-            - Path=/prestamo/**
+

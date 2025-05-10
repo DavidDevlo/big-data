@@ -8,7 +8,7 @@ eureka:
       defaultZone: ${EUREKA_URI:http://localhost:8090/eureka}
   instance:
     #hostname: localhost
-    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}}
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 spring:
   cloud:
     gateway:
@@ -21,4 +21,11 @@ spring:
           uri: lb://ms-auth-service
           predicates:
             - Path=/rol/**
-
+        - id: dna-usuario-service
+          uri: lb://dna-usuario-service
+          predicates:
+            - Path=/usuarios/**
+        - id: dna-prestamo-service
+          uri: lb://dna-prestamo-service
+          predicates:
+            - Path=/prestamo/**

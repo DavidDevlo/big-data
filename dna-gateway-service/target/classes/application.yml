@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: dna-gateway-service
+  profiles:
+    active: development
+  config:
+    import: optional:configserver:http://david:61321351@localhost:7070

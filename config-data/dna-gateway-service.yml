@@ -23,7 +23,7 @@ spring:
           predicates:
             - Path=/rol/**
           filters:
-           - AuthFilter
+            - AuthFilter
         - id: ms-cliente-service
           uri: lb://ms-cliente-service
           predicates:
@@ -31,6 +31,6 @@ spring:
         - id: ms-auth
           uri: lb://ms-auth
           predicates:
-             - Path=/auth/**
+            - Path=/auth/**
 
 

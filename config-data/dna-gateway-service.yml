@@ -22,7 +22,6 @@ spring:
           uri: lb://ms-auth
           predicates:
             - Path=/auth/**
-            -
         - id: ms-auth-service
           uri: lb://ms-auth-service
           predicates:

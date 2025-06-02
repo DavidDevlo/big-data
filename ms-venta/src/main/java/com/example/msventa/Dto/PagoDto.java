@@ -1,16 +1,16 @@
 package com.example.msventa.Dto;
 
 
-import java.math.BigDecimal;
+import lombok.Data;
+
 import java.time.LocalDateTime;
 
+@Data
 public class PagoDto {
-    private Integer ventaId;
+    private Integer venta; // Solo el ID de la venta
     private LocalDateTime fechaPago;
-    private BigDecimal monto;
+    private Double monto;
     private String metodoPago;
     private String estado;
     private String referenciaPago;
-
-    // Getters y Setters
 }

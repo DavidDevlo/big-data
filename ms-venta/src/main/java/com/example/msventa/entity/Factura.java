@@ -1,17 +1,14 @@
 package com.example.msventa.entity;
 
-import com.example.msventa.Dto.ClienteDto;
-import com.example.msventa.Dto.UsuarioDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Data
-public class Pago {
-
+public class Factura {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,17 +17,9 @@ public class Pago {
     @JoinColumn(name = "venta_id")
     private Venta venta;
 
-    private LocalDateTime fechaPago;
-
-    private BigDecimal monto;
-
-    private String metodoPago;
-
+    private String numeroFactura;
+    private LocalDateTime fechaEmision;
     private String estado;
-
-    private String referenciaPago;
-
-
 
 
 }

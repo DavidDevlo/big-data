@@ -1,6 +1,7 @@
 package com.example.msventa.controller;
 
 
+import com.example.msventa.Dto.PagoDto;
 import com.example.msventa.entity.Pago;
 import com.example.msventa.service.PagoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,9 @@ public class PagoController {
     }
 
     @PostMapping
-    public ResponseEntity<Pago> guardar(@RequestBody Pago pago) {
-        Pago nuevoPago = pagoService.guardar(pago);
+
+    public ResponseEntity<Pago> crearPago(@RequestBody PagoDto dto) {
+        Pago nuevoPago = pagoService.crearPago(dto);
         return ResponseEntity.ok(nuevoPago);
     }
 

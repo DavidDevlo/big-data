@@ -1,34 +1,25 @@
 package com.example.msventa.entity;
 
 import com.example.msventa.Dto.ClienteDto;
-import com.example.msventa.Dto.UsuarioDto;
+import com.example.msventa.Dto.ProductoDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 @Entity
 @Data
-public class Pago {
-
+public class Detalle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    private double precio;
+    private int cantidad;
     @OneToOne
     @JoinColumn(name = "venta_id")
     private Venta venta;
+    private Integer productoId;
 
-    private LocalDateTime fechaPago;
-
-    private BigDecimal monto;
-
-    private String metodoPago;
-
-    private String estado;
-
-    private String referenciaPago;
+    @Transient
+    private ProductoDto productoDto;
 
 
 

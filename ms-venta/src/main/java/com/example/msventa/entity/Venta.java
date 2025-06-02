@@ -1,6 +1,7 @@
 package com.example.msventa.entity;
 
 import com.example.msventa.Dto.ClienteDto;
+import com.example.msventa.Dto.UsuarioDto;
 import jakarta.persistence.*;
 import jdk.jfr.Timestamp;
 import lombok.Data;
@@ -21,9 +22,10 @@ public class Venta {
     private String estado;
 
     private Integer clienteId;
+    private Integer usuarioId;
     @Transient
     private ClienteDto clienteDto;
-
-
+    @Transient
+    private UsuarioDto usuarioDto;
 
 }

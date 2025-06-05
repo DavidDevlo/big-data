@@ -14,13 +14,13 @@ public class Producto {
     private double precio;
     private int stockMinimo;
 
-    @OneToOne
-    @JoinColumn(name = "marca_id") // Asegúrate de que esté bien escrito
-    private Marca marca;
-
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "marca_id")
+    private Marca marca;
 
     public Producto(Integer id, Categoria categoria, Marca marca, int stockMinimo, double precio, String descripcion, String nombre) {
         this.id = id;

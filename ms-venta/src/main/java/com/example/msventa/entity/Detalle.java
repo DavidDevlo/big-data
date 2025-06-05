@@ -21,7 +21,13 @@ public class Detalle {
     @Transient
     private ProductoDto productoDto;
 
-
-
-
+    public Detalle(Integer id, ProductoDto productoDto, Integer productoId, Venta venta, int cantidad, double precio) {
+        this.id = id;
+        this.productoDto = productoDto;
+        this.productoId = productoId;
+        this.venta = venta;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
+    public Detalle() {}
 }

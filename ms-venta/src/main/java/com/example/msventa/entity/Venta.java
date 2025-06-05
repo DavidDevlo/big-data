@@ -28,4 +28,16 @@ public class Venta {
     @Transient
     private UsuarioDto usuarioDto;
 
+    public Venta(Integer id, LocalDateTime fechaVenta, String metodoPago, BigDecimal total, String estado, Integer clienteId, ClienteDto clienteDto, Integer usuarioId, UsuarioDto usuarioDto) {
+        this.id = id;
+        this.fechaVenta = fechaVenta;
+        this.metodoPago = metodoPago;
+        this.total = total;
+        this.estado = estado;
+        this.clienteId = clienteId;
+        this.clienteDto = clienteDto;
+        this.usuarioId = usuarioId;
+        this.usuarioDto = usuarioDto;
+    }
+    public Venta() {}
 }

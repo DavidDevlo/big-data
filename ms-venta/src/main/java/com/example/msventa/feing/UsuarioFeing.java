@@ -22,6 +22,4 @@ public interface UsuarioFeing {
         usuarioDto.setActivo(false);
         return ResponseEntity.ok(usuarioDto);
     }
-
-
 }

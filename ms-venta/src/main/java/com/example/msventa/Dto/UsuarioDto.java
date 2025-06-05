@@ -2,6 +2,8 @@ package com.example.msventa.Dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class UsuarioDto {
     private Integer id;

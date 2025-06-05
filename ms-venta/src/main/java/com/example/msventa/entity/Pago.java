@@ -30,7 +30,14 @@ public class Pago {
 
     private String referenciaPago;
 
-
-
-
+    public Pago(Integer id, Venta venta, LocalDateTime fechaPago, BigDecimal monto, String estado, String metodoPago, String referenciaPago) {
+        this.id = id;
+        this.venta = venta;
+        this.fechaPago = fechaPago;
+        this.monto = monto;
+        this.estado = estado;
+        this.metodoPago = metodoPago;
+        this.referenciaPago = referenciaPago;
+    }
+    public Pago() {}
 }

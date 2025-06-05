@@ -21,5 +21,12 @@ public class Factura {
     private LocalDateTime fechaEmision;
     private String estado;
 
-
+    public Factura(Integer id, String estado, LocalDateTime fechaEmision, String numeroFactura, Venta venta) {
+        this.id = id;
+        this.estado = estado;
+        this.fechaEmision = fechaEmision;
+        this.numeroFactura = numeroFactura;
+        this.venta = venta;
+    }
+    public Factura() {}
 }

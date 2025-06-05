@@ -74,4 +74,17 @@ public class Usuario {
     public void setRoles(List<Rol> roles) {
         this.roles = roles;
     }
+
+    public Usuario(Integer id, String password, String email, String username, List<Rol> roles, Boolean activo) {
+        this.id = id;
+        this.password = password;
+        this.email = email;
+        this.username = username;
+        this.roles = roles;
+        this.activo = activo;
+    }
+
+    public Usuario() {
+
+    }
 }

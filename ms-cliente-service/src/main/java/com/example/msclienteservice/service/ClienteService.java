@@ -11,7 +11,7 @@ public interface ClienteService {
 
     Optional<Cliente> buscar(Integer id);
 
-    Cliente guardar(Cliente categoria);
+    Cliente guardar(Cliente cliente);
 
     Cliente actualizar(Integer id, Cliente cliente);
 

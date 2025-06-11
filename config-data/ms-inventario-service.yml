@@ -30,3 +30,12 @@ eureka:
   instance:
     #hostname: localhost
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+ resilience4j:
+    circuitbreaker:
+      instances:
+        productoListarPorIdCB:
+          registerHealthIndicator: true
+          slidingWindowSize: 5
+          failureRateThreshold: 50
+          waitDurationInOpenState: 10s
+          permittedNumberOfCallsInHalfOpenState: 3  

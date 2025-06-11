@@ -20,13 +20,13 @@ public class CategoriaSeeder implements CommandLineRunner {
     public void run(String... args) {
         if (categoriaRepository.count() == 0) {
             List<Categoria> categorias = List.of(
-                    new Categoria(null, "Tela"),
-                    new Categoria(null, "Insumo"),
-                    new Categoria(null, "Herramienta"),
-                    new Categoria(null, "Maquinaria"),
-                    new Categoria(null, "Accesorio"),
-                    new Categoria(null, "Combo exportación"),
-                    new Categoria(null, "Embalaje")
+                    new Categoria(null, "Zapatillas Urbanas"),
+            new Categoria(null, "Zapatillas Deportivas"),
+            new Categoria(null, "Zapatillas de Running"),
+            new Categoria(null, "Zapatillas de Entrenamiento"),
+            new Categoria(null, "Zapatillas de Baloncesto"),
+            new Categoria(null, "Zapatillas para Niños"),
+            new Categoria(null, "Zapatillas de Outdoor")
             );
             categoriaRepository.saveAll(categorias);
             System.out.println("✅ Categorías insertadas correctamente.");

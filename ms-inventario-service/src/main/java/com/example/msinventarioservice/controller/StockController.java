@@ -43,4 +43,10 @@ public class StockController {
     public Stock update(@RequestBody Stock stock) {
         return stockService.update(stock);
     }
+
+    @PutMapping("/descontar/{id}/{cantidad}")
+    public ResponseEntity<Void> descontarStock(@PathVariable Integer id, @PathVariable Integer cantidad) {
+        stockService.descontarStock(id, cantidad); // lógica en el servicio
+        return ResponseEntity.ok().build();
+    }
 }

@@ -17,6 +17,7 @@ public class Stock {
     private Almacen almacen;
 
     private Integer productoId;
+
     @Transient
     private ProductoDto productoDto;
 

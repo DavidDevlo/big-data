@@ -20,13 +20,16 @@ public class MarcaSeeder implements CommandLineRunner {
     public void run(String... args) {
         if (marcaRepository.count() == 0) {
             List<Marca> marcas = List.of(
-                    new Marca(null, "TexAlpaca"),
-                    new Marca(null, "Indutech"),
-                    new Marca(null, "CosturaPro"),
-                    new Marca(null, "VaporiX"),
-                    new Marca(null, "ExportLine"),
-                    new Marca(null, "Hilandera Andina"),
-                    new Marca(null, "MaqTex")
+                    new Marca(null, "Nike"),
+            new Marca(null, "Adidas"),
+            new Marca(null, "Puma"),
+            new Marca(null, "New Balance"),
+            new Marca(null, "Converse"),
+            new Marca(null, "Vans"),
+            new Marca(null, "Reebok"),
+            new Marca(null, "Skechers"),
+            new Marca(null, "Fila"),
+            new Marca(null, "Asics")
             );
             marcaRepository.saveAll(marcas);
             System.out.println("✅ Marcas insertadas correctamente.");

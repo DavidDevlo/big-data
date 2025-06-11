@@ -13,5 +13,6 @@ public interface StockService {
     Stock Save(StockDto dto);
     Stock update(Stock stock);
     void delete(Integer id);
+    void descontarStock(Integer id, Integer cantidad);
 
 }

@@ -13,7 +13,7 @@ public interface ProductoFeing {
     @CircuitBreaker(name = "productoListarPorIdCB", fallbackMethod = "fallbackProductoListarPorIdCB")
     ResponseEntity<ProductoDto> buscarProducto(@PathVariable("id") Integer id);
 
-    default ResponseEntity<ProductoDto> fallbackProductoListarPorIdCB(Integer id, Throwable e) {
+    default ResponseEntity<ProductoDto> fallbackProductoListarPorIdCB(Integer id, Exception e) {
         ProductoDto productoDto = new ProductoDto();
         productoDto.setId(id);
         productoDto.setNombre("Servicio no disponible");

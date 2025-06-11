@@ -29,4 +29,46 @@ public class Factura {
         this.venta = venta;
     }
     public Factura() {}
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public LocalDateTime getFechaEmision() {
+        return fechaEmision;
+    }
+
+    public void setFechaEmision(LocalDateTime fechaEmision) {
+        this.fechaEmision = fechaEmision;
+    }
+
+    public String getNumeroFactura() {
+        return numeroFactura;
+    }
+
+    public void setNumeroFactura(String numeroFactura) {
+        this.numeroFactura = numeroFactura;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+
 }

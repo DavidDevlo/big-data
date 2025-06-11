@@ -53,4 +53,10 @@ public class PagoController {
         pagoService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/registrar")
+    public ResponseEntity<String> registrarPago(@RequestBody PagoDto pagoDto) {
+        pagoService.registrarPago(pagoDto);
+        return ResponseEntity.ok("Pago registrado correctamente.");
+    }
 }

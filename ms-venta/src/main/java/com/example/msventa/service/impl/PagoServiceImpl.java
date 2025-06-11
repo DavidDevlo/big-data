@@ -1,6 +1,7 @@
 package com.example.msventa.service.impl;
 
 import com.example.msventa.Dto.PagoDto;
+import com.example.msventa.entity.Factura;
 import com.example.msventa.entity.Pago;
 import com.example.msventa.entity.Venta;
 import com.example.msventa.repository.PagoRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,16 +30,15 @@ public class PagoServiceImpl implements PagoService {
 
     @Override
     public List<Pago> listar() {
-        List<Pago> pagos = pagoRepository.findAll();
+        List<Pago> pagos     = pagoRepository.findAll();
 
-        return pagos.stream().map(pago -> {
-            Long idVenta = Long.valueOf(pago.getVenta().getId());
-            Venta ventaConDetalle = ventaService.findById(Math.toIntExact(idVenta)); // ya viene con DTOs
-
-            pago.setVenta(ventaConDetalle); // reemplazas la venta básica por la completa
-            return pago;
-        }).collect(Collectors.toList());
+        for (Pago pago : pagos) {
+            Venta ventaCompleta = ventaService.findById(pago.getVenta().getId());
+            pago.setVenta(ventaCompleta);
+        }
+        return pagos;
     }
+
 
     @Override
     public Optional<Pago> buscar(Integer id) {
@@ -82,4 +83,28 @@ public class PagoServiceImpl implements PagoService {
     public void eliminar(Integer id) {
         pagoRepository.deleteById(id);
     }
+
+    @Override
+    public void registrarPago(PagoDto dto) {
+        Venta venta = ventaRepository.findById(dto.getVenta())
+                .orElseThrow(() -> new RuntimeException("Venta no encontrada"));
+
+        // Convertir el DTO a entidad
+        Pago pago = new Pago();
+        pago.setVenta(venta);
+        pago.setFechaPago(dto.getFechaPago() != null ? dto.getFechaPago() : LocalDateTime.now());
+        pago.setMonto(BigDecimal.valueOf(dto.getMonto()));
+        pago.setMetodoPago(dto.getMetodoPago());
+        pago.setEstado(dto.getEstado());
+        pago.setReferenciaPago(dto.getReferenciaPago());
+
+        pagoRepository.save(pago);
+
+        // Verificar el total de pagos realizados para esta venta
+        BigDecimal totalPagado = pagoRepository.totalPagadoPorVenta(venta.getId());
+        if (totalPagado.compareTo(venta.getTotal()) >= 0) {
+            venta.setEstado("Pagado");
+            ventaRepository.save(venta);
+        }
+        }
 }

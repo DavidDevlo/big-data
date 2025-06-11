@@ -13,7 +13,7 @@ public class Detalle {
     private Integer id;
     private double precio;
     private int cantidad;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "venta_id")
     private Venta venta;
     private Integer productoId;

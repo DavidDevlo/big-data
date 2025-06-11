@@ -8,6 +8,7 @@ import com.example.msventa.feing.ProductoFeing;
 import com.example.msventa.repository.DetalleRepository;
 import com.example.msventa.repository.VentaRepository;
 import com.example.msventa.service.DetalleService;
+import com.example.msventa.service.VentaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +24,19 @@ public class DetalleServiceImpl implements DetalleService {
     private DetalleRepository detalleRepository;
     @Autowired
     private VentaRepository ventaRepository;
+    @Autowired
+    private VentaService ventaService;
 
     @Override
     public List<Detalle> findAll() {
-        return detalleRepository.findAll();
+
+        List<Detalle> detalles = detalleRepository.findAll();
+        for (Detalle detalle : detalles) {
+            Venta ventaCompleta = ventaService.findById(detalle.getVenta().getId());
+            detalle.setVenta(ventaCompleta);
+            detalle.setProductoDto(productoFeing.buscarDetalle(detalle.getProductoId()).getBody());
+        }
+        return detalles;
     }
 
     @Override

@@ -3,11 +3,12 @@ package com.example.msventa.entity;
 import com.example.msventa.Dto.ClienteDto;
 import com.example.msventa.Dto.UsuarioDto;
 import jakarta.persistence.*;
-import jdk.jfr.Timestamp;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -28,6 +29,7 @@ public class Venta {
     @Transient
     private UsuarioDto usuarioDto;
 
+
     public Venta(Integer id, LocalDateTime fechaVenta, String metodoPago, BigDecimal total, String estado, Integer clienteId, ClienteDto clienteDto, Integer usuarioId, UsuarioDto usuarioDto) {
         this.id = id;
         this.fechaVenta = fechaVenta;
@@ -40,4 +42,6 @@ public class Venta {
         this.usuarioDto = usuarioDto;
     }
     public Venta() {}
+
+
 }

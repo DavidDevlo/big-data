@@ -3,6 +3,8 @@ package com.example.msventa.service;
 
 
 
+import com.example.msventa.Dto.VentaRequestDTO;
+import com.example.msventa.Dto.VentaResponseDTO;
 import com.example.msventa.entity.Venta;
 
 import java.util.List;
@@ -13,5 +15,7 @@ public interface VentaService {
     Venta findById(int id);
     Venta Save(Venta venta);
     Venta update(Venta venta);
+    VentaResponseDTO registrarVentaConFactura(VentaRequestDTO requestDTO);
+
 
 }

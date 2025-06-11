@@ -20,5 +20,7 @@ public interface PagoService {
 
     void eliminar(Integer id);
 
+    void registrarPago(PagoDto pagoDto);
+
 
 }

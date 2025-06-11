@@ -16,7 +16,7 @@ public class Pago {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "venta_id")
     private Venta venta;
 

@@ -3,6 +3,8 @@ package com.example.msventa.service.impl;
 import com.example.msventa.Dto.FacturaDto;
 import com.example.msventa.entity.Factura;
 import com.example.msventa.entity.Venta;
+import com.example.msventa.feing.ClienteFeing;
+import com.example.msventa.feing.UsuarioFeing;
 import com.example.msventa.repository.FacturaRepository;
 import com.example.msventa.repository.VentaRepository;
 import com.example.msventa.service.FacturaService;
@@ -24,18 +26,21 @@ public class FacturaServiceImpl implements FacturaService {
 
     @Autowired
     private VentaService ventaService;
+    @Autowired
+    private ClienteFeing clienteFeing;
+    @Autowired
+    private UsuarioFeing usuarioFeing;
 
     @Override
     public List<Factura> listar() {
         List<Factura> facturas = facturaRepository.findAll();
 
-        return facturas.stream().map(factura -> {
-            Long idVenta = Long.valueOf(factura.getVenta().getId());
-            Venta ventaConDetalle = ventaService.findById(Math.toIntExact(idVenta)); // ya viene con DTOs
+        for (Factura factura : facturas) {
+            Venta ventaCompleta = ventaService.findById(factura.getVenta().getId());
+            factura.setVenta(ventaCompleta);
+        }
 
-            factura.setVenta(ventaConDetalle); // reemplazas la venta básica por la completa
-            return factura;
-        }).collect(Collectors.toList());
+        return facturas;
     }
 
     @Override

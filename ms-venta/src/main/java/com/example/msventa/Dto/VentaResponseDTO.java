@@ -22,6 +22,35 @@ public class VentaResponseDTO {
     private List<DetalleDto> detalles;
     private FacturaDto factura;
 
-    public VentaResponseDTO(Venta venta, List<Detalle> detalles, Factura factura) {
+
+    public VentaResponseDTO(Integer ventaId, LocalDateTime fechaVenta, Double total, String metodoPago, String estado, ClienteDto cliente, UsuarioDto usuario, List<DetalleDto> detalles, FacturaDto factura) {
+        this.ventaId = ventaId;
+        this.fechaVenta = fechaVenta;
+        this.total = total;
+        this.metodoPago = metodoPago;
+        this.estado = estado;
+        this.cliente = cliente;
+        this.usuario = usuario;
+        this.detalles = detalles;
+        this.factura = factura;
     }
+
+    public VentaResponseDTO(Venta venta, List<Detalle> detalles, Factura factura) {
+        this.ventaId = venta.getId();
+        this.fechaVenta = venta.getFechaVenta();
+        this.total = total;
+        this.metodoPago = venta.getMetodoPago();
+        this.estado = venta.getEstado();
+
+        // Si tienes métodos de conversión de entidad a DTO, úsalos
+        this.cliente = cliente;
+        this.usuario = usuario;
+
+        this.detalles = detalles.stream()
+                .map(DetalleDto::new)
+                .toList();
+        this.factura = new FacturaDto(factura);
+    }
+
+
 }

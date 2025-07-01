@@ -5,6 +5,7 @@ import com.example.msventa.Dto.PagoDto;
 import com.example.msventa.entity.Pago;
 import com.example.msventa.entity.Venta;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,4 +24,5 @@ public interface PagoService {
     void registrarPago(PagoDto pagoDto);
 
 
+    BigDecimal obtenerTotalPagado(Integer ventaId);
 }

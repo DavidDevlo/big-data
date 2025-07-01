@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/pagos")
@@ -33,7 +35,6 @@ public class PagoController {
     }
 
     @PostMapping
-
     public ResponseEntity<Pago> crearPago(@RequestBody PagoDto dto) {
         Pago nuevoPago = pagoService.crearPago(dto);
         return ResponseEntity.ok(nuevoPago);
@@ -59,4 +60,10 @@ public class PagoController {
         pagoService.registrarPago(pagoDto);
         return ResponseEntity.ok("Pago registrado correctamente.");
     }
+    @GetMapping("/total-pagado/{ventaId}")
+    public ResponseEntity<BigDecimal> obtenerTotalPagado(@PathVariable Integer ventaId) {
+        BigDecimal totalPagado = pagoService.obtenerTotalPagado(ventaId);
+        return ResponseEntity.ok(totalPagado != null ? totalPagado : BigDecimal.ZERO);
+    }
+
 }

@@ -85,26 +85,49 @@ public class PagoServiceImpl implements PagoService {
     }
 
     @Override
+    public BigDecimal obtenerTotalPagado(Integer ventaId) {
+        return pagoRepository.totalPagadoPorVenta(ventaId);
+    }
+
+    @Override
     public void registrarPago(PagoDto dto) {
         Venta venta = ventaRepository.findById(dto.getVenta())
                 .orElseThrow(() -> new RuntimeException("Venta no encontrada"));
+
+        BigDecimal totalPagado = pagoRepository.totalPagadoPorVenta(venta.getId());
+
+        // Verificar si ya está pagado antes de permitir el nuevo pago
+        if (totalPagado.compareTo(venta.getTotal()) >= 0) {
+            throw new RuntimeException("La venta ya está completamente pagada.");
+        }
+
+        // Validar que no se exceda el monto restante
+        BigDecimal montoDto = BigDecimal.valueOf(dto.getMonto());
+        BigDecimal restante = venta.getTotal().subtract(totalPagado);
+        if (montoDto.compareTo(restante) > 0) {
+            throw new RuntimeException("El monto excede lo que queda por pagar. Restante: S/ " + restante);
+        }
 
         // Convertir el DTO a entidad
         Pago pago = new Pago();
         pago.setVenta(venta);
         pago.setFechaPago(dto.getFechaPago() != null ? dto.getFechaPago() : LocalDateTime.now());
-        pago.setMonto(BigDecimal.valueOf(dto.getMonto()));
+        pago.setMonto(montoDto);
         pago.setMetodoPago(dto.getMetodoPago());
         pago.setEstado(dto.getEstado());
         pago.setReferenciaPago(dto.getReferenciaPago());
 
         pagoRepository.save(pago);
 
-        // Verificar el total de pagos realizados para esta venta
-        BigDecimal totalPagado = pagoRepository.totalPagadoPorVenta(venta.getId());
+        // Verificar si ya quedó pagado después de este pago
+        totalPagado = pagoRepository.totalPagadoPorVenta(venta.getId()); // actualiza después del nuevo pago
         if (totalPagado.compareTo(venta.getTotal()) >= 0) {
             venta.setEstado("Pagado");
             ventaRepository.save(venta);
         }
-        }
+    }
+
+
+
+
 }

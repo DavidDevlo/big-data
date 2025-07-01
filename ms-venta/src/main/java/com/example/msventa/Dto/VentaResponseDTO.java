@@ -5,6 +5,7 @@ import com.example.msventa.entity.Factura;
 import com.example.msventa.entity.Venta;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class VentaResponseDTO {
     private Integer ventaId;
     private LocalDateTime fechaVenta;
-    private Double total;
+    private BigDecimal total;
     private String metodoPago;
     private String estado;
 
@@ -23,7 +24,7 @@ public class VentaResponseDTO {
     private FacturaDto factura;
 
 
-    public VentaResponseDTO(Integer ventaId, LocalDateTime fechaVenta, Double total, String metodoPago, String estado, ClienteDto cliente, UsuarioDto usuario, List<DetalleDto> detalles, FacturaDto factura) {
+    public VentaResponseDTO(Integer ventaId, LocalDateTime fechaVenta, BigDecimal total, String metodoPago, String estado, ClienteDto cliente, UsuarioDto usuario, List<DetalleDto> detalles, FacturaDto factura) {
         this.ventaId = ventaId;
         this.fechaVenta = fechaVenta;
         this.total = total;
@@ -38,18 +39,18 @@ public class VentaResponseDTO {
     public VentaResponseDTO(Venta venta, List<Detalle> detalles, Factura factura) {
         this.ventaId = venta.getId();
         this.fechaVenta = venta.getFechaVenta();
-        this.total = total;
+        this.total = venta.getTotal(); // Asegúrate de esto
         this.metodoPago = venta.getMetodoPago();
         this.estado = venta.getEstado();
 
         // Si tienes métodos de conversión de entidad a DTO, úsalos
-        this.cliente = cliente;
-        this.usuario = usuario;
+        this.cliente = venta.getClienteDto(); // o setearlo manualmente desde un servicio si no está cargado
+        this.usuario = venta.getUsuarioDto(); // igual
 
         this.detalles = detalles.stream()
                 .map(DetalleDto::new)
                 .toList();
-        this.factura = new FacturaDto(factura);
+        this.factura = factura != null ? new FacturaDto(factura) : null;
     }
 
 

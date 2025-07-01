@@ -9,6 +9,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String imagenUrl;
     private String nombre;
     private String descripcion;
     private double precio;
@@ -21,17 +22,6 @@ public class Producto {
     @ManyToOne
     @JoinColumn(name = "marca_id")
     private Marca marca;
-
-    public Producto(Integer id, Categoria categoria, Marca marca, int stockMinimo, double precio, String descripcion, String nombre) {
-        this.id = id;
-        this.categoria = categoria;
-        this.marca = marca;
-        this.stockMinimo = stockMinimo;
-        this.precio = precio;
-        this.descripcion = descripcion;
-        this.nombre = nombre;
-    }
-    public Producto() {}
 
     public Integer getId() {
         return id;
@@ -81,6 +71,14 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -89,16 +87,32 @@ public class Producto {
         this.nombre = nombre;
     }
 
+    public Producto( Integer id,  Categoria categoria , Marca marca, int stockMinimo, double precio, String descripcion, String nombre,  String imagenUrl ) {
+        this.marca = marca;
+        this.categoria = categoria;
+        this.stockMinimo = stockMinimo;
+        this.precio = precio;
+        this.descripcion = descripcion;
+        this.nombre = nombre;
+        this.id = id;
+        this.imagenUrl = imagenUrl;
+    }
+    public Producto() {
+
+    }
+
     @Override
     public String toString() {
         return "Producto{" +
                 "id=" + id +
+                ", imagenUrl='" + imagenUrl + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +
                 ", stockMinimo=" + stockMinimo +
-                ", marca=" + marca +
                 ", categoria=" + categoria +
+                ", marca=" + marca +
                 '}';
     }
+
 }

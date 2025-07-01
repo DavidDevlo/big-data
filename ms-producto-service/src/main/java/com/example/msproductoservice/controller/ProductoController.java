@@ -4,11 +4,18 @@ import com.example.msproductoservice.Dto.ProductoDto;
 import com.example.msproductoservice.entity.Producto;
 import com.example.msproductoservice.service.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/productos")
@@ -51,4 +58,18 @@ public class ProductoController {
         productoService.eliminar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/upload-image")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+        try {
+            String folder = "uploads/";
+            String filename = UUID.randomUUID() + "_" + file.getOriginalFilename();
+            Path path = Paths.get(folder + filename);
+            Files.createDirectories(path.getParent());
+            Files.copy(file.getInputStream(), path);
+            return ResponseEntity.ok(filename);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error al subir imagen");
+        }
+}
 }

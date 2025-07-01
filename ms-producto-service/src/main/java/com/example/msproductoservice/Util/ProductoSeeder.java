@@ -39,16 +39,16 @@ public class ProductoSeeder implements CommandLineRunner {
             Marca marca5 = new Marca(5, null);
 
             List<Producto> productos = List.of(
-                    new Producto(1, cat1, marca5, 10, 85.0, "Diseño clásico con comodidad urbana", "Zapatillas Urbanas Clásicas"),
-                    new Producto(2, cat1, marca4, 15, 75.0, "Estilo retro para el día a día", "Zapatillas Retro Lifestyle"),
-                    new Producto(3, cat2, marca3, 20, 95.0, "Óptimas para entrenamientos de alta intensidad", "Zapatillas de Entrenamiento Pro"),
-                    new Producto(4, cat3, marca1, 10, 150.0, "Amortiguación superior para largas distancias", "Zapatillas Running Elite"),
-                    new Producto(5, cat2, marca2, 12, 110.0, "Versátiles para el gimnasio y la calle", "Zapatillas Deportivas All-Around"),
-                    new Producto(6, cat4, marca4, 18, 105.0, "Ligeras y rápidas para carreras cortas", "Zapatillas Running Speed"),
-                    new Producto(7, cat5, marca1, 14, 130.0, "Soporte y estabilidad para deportes de equipo", "Zapatillas Cross-Training"),
-                    new Producto(8, cat4, marca2, 10, 90.0, "Comodidad transpirable para uso diario", "Zapatillas Urbanas Ligeras"),
-                    new Producto(9, cat3, marca3, 16, 120.0, "Agarre excepcional en superficies variadas", "Zapatillas Running Trail"),
-                    new Producto(10, cat2, marca1, 12, 140.0, "Edición especial con tecnología avanzada", "Zapatillas Deportivas Premium")
+                    new Producto(1, cat1, marca5, 10, 85.0, "Diseño clásico con comodidad urbana", "Zapatillas Urbanas Clásicas","Zapatillas1.jpg"),
+                    new Producto(2, cat1, marca4, 15, 75.0, "Estilo retro para el día a día", "Zapatillas Retro Lifestyle","Zapatilla2.jpg"),
+                    new Producto(3, cat2, marca3, 20, 95.0, "Óptimas para entrenamientos de alta intensidad", "Zapatillas de Entrenamiento Pro","Zapatilla3.jpg"),
+                    new Producto(4, cat3, marca1, 10, 150.0, "Amortiguación superior para largas distancias", "Zapatillas Running Elite","Zapatilla4.jpg"),
+                    new Producto(5, cat2, marca2, 12, 110.0, "Versátiles para el gimnasio y la calle", "Zapatillas Deportivas All-Around","Zapatillas1.jpg"),
+                    new Producto(6, cat4, marca4, 18, 105.0, "Ligeras y rápidas para carreras cortas", "Zapatillas Running Speed","Zapatilla2.jpg"),
+                    new Producto(7, cat5, marca1, 14, 130.0, "Soporte y estabilidad para deportes de equipo", "Zapatillas Cross-Training","Zapatilla3.jpg"),
+                    new Producto(8, cat4, marca2, 10, 90.0, "Comodidad transpirable para uso diario", "Zapatillas Urbanas Ligeras","Zapatilla4.jpg"),
+                    new Producto(9, cat3, marca3, 16, 120.0, "Agarre excepcional en superficies variadas", "Zapatillas Running Trail","Zapatillas1.jpg"),
+                    new Producto(10, cat2, marca1, 12, 140.0, "Edición especial con tecnología avanzada", "Zapatillas Deportivas Premium","Zapatilla4.jpg")
             );
 
             productoRepository.saveAll(productos);

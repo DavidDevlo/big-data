@@ -1,9 +1,12 @@
 package com.example.msproductoservice.Dto;
 
+import com.example.msproductoservice.entity.Producto;
 import lombok.Data;
 
 @Data
 public class ProductoDto {
+
+    private String imagenUrl;
 
     private String nombre;
     private String descripcion;
@@ -12,15 +15,26 @@ public class ProductoDto {
     private Integer marcaId;
     private Integer categoriaId;
 
-    public ProductoDto(String nombre, Integer categoriaId, Integer marcaId, int stockMinimo, double precio, String descripcion) {
-        this.nombre = nombre;
-        this.categoriaId = categoriaId;
+
+
+    public ProductoDto(String imagenUrl, Integer marcaId, int stockMinimo, String nombre, String descripcion, double precio, Integer categoriaId) {
+        this.imagenUrl = imagenUrl;
         this.marcaId = marcaId;
         this.stockMinimo = stockMinimo;
-        this.precio = precio;
+        this.nombre = nombre;
         this.descripcion = descripcion;
+        this.precio = precio;
+        this.categoriaId = categoriaId;
     }
-    public ProductoDto(){}
+    public ProductoDto() {}
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
+    }
 
     public String getNombre() {
         return nombre;
@@ -28,6 +42,30 @@ public class ProductoDto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public int getStockMinimo() {
+        return stockMinimo;
+    }
+
+    public void setStockMinimo(int stockMinimo) {
+        this.stockMinimo = stockMinimo;
     }
 
     public Integer getMarcaId() {
@@ -46,34 +84,11 @@ public class ProductoDto {
         this.categoriaId = categoriaId;
     }
 
-    public int getStockMinimo() {
-        return stockMinimo;
-    }
-
-    public void setStockMinimo(int stockMinimo) {
-        this.stockMinimo = stockMinimo;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     @Override
     public String toString() {
         return "ProductoDto{" +
-                "nombre='" + nombre + '\'' +
+                "imagenUrl='" + imagenUrl + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +
                 ", stockMinimo=" + stockMinimo +
@@ -81,5 +96,4 @@ public class ProductoDto {
                 ", categoriaId=" + categoriaId +
                 '}';
     }
-
 }

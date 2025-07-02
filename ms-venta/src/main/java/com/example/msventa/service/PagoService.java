@@ -3,7 +3,6 @@ package com.example.msventa.service;
 
 import com.example.msventa.Dto.PagoDto;
 import com.example.msventa.entity.Pago;
-import com.example.msventa.entity.Venta;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -25,4 +24,7 @@ public interface PagoService {
 
 
     BigDecimal obtenerTotalPagado(Integer ventaId);
+
+
+    List<Pago> obtenerPagosPorVenta(Integer ventaId);
 }

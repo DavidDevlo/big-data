@@ -1,7 +1,6 @@
 package com.example.msventa.service.impl;
 
 import com.example.msventa.Dto.PagoDto;
-import com.example.msventa.entity.Factura;
 import com.example.msventa.entity.Pago;
 import com.example.msventa.entity.Venta;
 import com.example.msventa.repository.PagoRepository;
@@ -15,7 +14,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PagoServiceImpl implements PagoService {
@@ -126,6 +124,12 @@ public class PagoServiceImpl implements PagoService {
             ventaRepository.save(venta);
         }
     }
+
+    public List<Pago> obtenerPagosPorVenta(Integer ventaId) {
+        return pagoRepository.findByVentaId(ventaId);
+    }
+
+
 
 
 

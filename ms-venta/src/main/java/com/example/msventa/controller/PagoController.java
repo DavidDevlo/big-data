@@ -65,5 +65,12 @@ public class PagoController {
         BigDecimal totalPagado = pagoService.obtenerTotalPagado(ventaId);
         return ResponseEntity.ok(totalPagado != null ? totalPagado : BigDecimal.ZERO);
     }
+    @GetMapping("/venta/{ventaId}")
+    public ResponseEntity<List<Pago>> listarPagosPorVenta(@PathVariable Integer ventaId) {
+        List<Pago> pagos = pagoService.obtenerPagosPorVenta(ventaId);
+        return ResponseEntity.ok(pagos);
+    }
+
+
 
 }

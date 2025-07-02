@@ -96,4 +96,7 @@ public class ProductoDto {
                 ", categoriaId=" + categoriaId +
                 '}';
     }
+
+    public void set(Integer id) {
+    }
 }

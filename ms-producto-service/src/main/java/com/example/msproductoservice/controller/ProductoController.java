@@ -30,13 +30,24 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Producto> buscar(@PathVariable Integer id) {
+    public ResponseEntity<ProductoDto> buscar(@PathVariable Integer id) {
         Optional<Producto> producto = productoService.buscar(id);
         if (producto.isPresent()) {
-            return ResponseEntity.ok(producto.get());
+            ProductoDto dto = convertirAProductoDto(producto.get());
+            return ResponseEntity.ok(dto);
         }
         return ResponseEntity.notFound().build();
     }
+    private ProductoDto convertirAProductoDto(Producto producto) {
+        ProductoDto dto = new ProductoDto();
+        dto.set(producto.getId());
+        dto.setNombre(producto.getNombre());
+        dto.setDescripcion(producto.getDescripcion());
+        dto.setPrecio(producto.getPrecio());
+        dto.setStockMinimo(producto.getStockMinimo());
+        return dto;
+    }
+
 
     @PostMapping
     public ResponseEntity<Producto> crear(@RequestBody ProductoDto dto) {

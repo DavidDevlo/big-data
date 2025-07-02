@@ -45,6 +45,7 @@ public class ProductoController {
         dto.setDescripcion(producto.getDescripcion());
         dto.setPrecio(producto.getPrecio());
         dto.setStockMinimo(producto.getStockMinimo());
+        dto.setImagenUrl(producto.getImagenUrl());
         return dto;
     }
 

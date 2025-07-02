@@ -51,6 +51,7 @@ public class ProductoServiceImpl implements ProductoService {
         producto.setDescripcion(dto.getDescripcion());
         producto.setPrecio(dto.getPrecio());
         producto.setStockMinimo(dto.getStockMinimo());
+        producto.setImagenUrl(dto.getImagenUrl()); //
         producto.setMarca(marca);
         producto.setCategoria(categoria);
 

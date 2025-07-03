@@ -40,14 +40,17 @@ public class ProductoController {
     }
     private ProductoDto convertirAProductoDto(Producto producto) {
         ProductoDto dto = new ProductoDto();
-        dto.set(producto.getId());
+        dto.setId(producto.getId()); // ✅ ahora sí asigna bien el ID
         dto.setNombre(producto.getNombre());
         dto.setDescripcion(producto.getDescripcion());
         dto.setPrecio(producto.getPrecio());
         dto.setStockMinimo(producto.getStockMinimo());
         dto.setImagenUrl(producto.getImagenUrl());
+        dto.setMarcaId(producto.getMarca().getId());
+        dto.setCategoriaId(producto.getCategoria().getId());
         return dto;
     }
+
 
 
     @PostMapping

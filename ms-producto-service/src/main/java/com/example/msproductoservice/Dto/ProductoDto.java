@@ -6,8 +6,8 @@ import lombok.Data;
 @Data
 public class ProductoDto {
 
+    private Integer id;
     private String imagenUrl;
-
     private String nombre;
     private String descripcion;
     private double precio;
@@ -27,6 +27,13 @@ public class ProductoDto {
         this.categoriaId = categoriaId;
     }
     public ProductoDto() {}
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getImagenUrl() {
         return imagenUrl;
@@ -97,6 +104,5 @@ public class ProductoDto {
                 '}';
     }
 
-    public void set(Integer id) {
-    }
+
 }

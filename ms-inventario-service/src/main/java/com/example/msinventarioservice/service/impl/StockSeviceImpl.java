@@ -1,6 +1,7 @@
 package com.example.msinventarioservice.service.impl;
 
 import com.example.msinventarioservice.Dto.ProductoDto;
+import com.example.msinventarioservice.Dto.ProductoStockInfoDTO;
 import com.example.msinventarioservice.Dto.StockDto;
 import com.example.msinventarioservice.entity.Almacen;
 import com.example.msinventarioservice.entity.Stock;
@@ -12,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public  class StockSeviceImpl implements StockService {
@@ -89,5 +92,25 @@ public  class StockSeviceImpl implements StockService {
 
         stock.setCantidad(stock.getCantidad() - cantidad);
         stockRepository.save(stock);
+    }
+    @Override
+    public List<ProductoStockInfoDTO> listarProductosConStock() {
+        List<Stock> lista = stockRepository.findAll();
+
+        return lista.stream().map(stock -> {
+            ResponseEntity<ProductoDto> response = productoFeing.buscarProducto(stock.getProductoId());
+            ProductoDto producto = response.getBody();
+
+            Almacen almacen = stock.getAlmacen();
+
+            ProductoStockInfoDTO dto = new ProductoStockInfoDTO();
+            dto.setProductoId(producto.getId());
+            dto.setNombreProducto(producto.getNombre());
+            dto.setPrecio(BigDecimal.valueOf(producto.getPrecio()));
+            dto.setCantidad(stock.getCantidad());
+            dto.setNombreAlmacen(almacen.getNombre());
+
+            return dto;
+        }).collect(Collectors.toList());
     }
 }

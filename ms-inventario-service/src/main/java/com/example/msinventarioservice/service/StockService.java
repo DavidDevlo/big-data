@@ -1,5 +1,6 @@
 package com.example.msinventarioservice.service;
 
+import com.example.msinventarioservice.Dto.ProductoStockInfoDTO;
 import com.example.msinventarioservice.Dto.StockDto;
 import com.example.msinventarioservice.entity.Almacen;
 import com.example.msinventarioservice.entity.Stock;
@@ -14,5 +15,8 @@ public interface StockService {
     Stock update(Stock stock);
     void delete(Integer id);
     void descontarStock(Integer id, Integer cantidad);
+    List<ProductoStockInfoDTO> listarProductosConStock();
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.msinventarioservice.controller;
 
+import com.example.msinventarioservice.Dto.ProductoStockInfoDTO;
 import com.example.msinventarioservice.Dto.StockDto;
 import com.example.msinventarioservice.service.StockService;
 import lombok.RequiredArgsConstructor;
@@ -49,4 +50,10 @@ public class StockController {
         stockService.descontarStock(id, cantidad); // lógica en el servicio
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/productos-stock")
+    public ResponseEntity<List<ProductoStockInfoDTO>> obtenerProductosConStock() {
+        return ResponseEntity.ok(stockService.listarProductosConStock());
+    }
+
 }

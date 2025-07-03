@@ -21,10 +21,10 @@ public class Stock {
     @Transient
     private ProductoDto productoDto;
 
-    public Stock(Integer id, int cantidad, ProductoDto productoDto, Almacen almacen, Integer productoId) {
+    public Stock(Integer id, int cantidad ,Almacen almacen, Integer productoId) {
         this.id = id;
         this.cantidad = cantidad;
-        this.productoDto = productoDto;
+
         this.almacen = almacen;
         this.productoId = productoId;
     }

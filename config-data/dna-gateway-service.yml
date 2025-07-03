@@ -62,5 +62,9 @@ spring:
             - Path=/stock/**, /almacenes/**
           filters:
             - AuthFilter
+        - id: ms-producto-static-uploads
+          uri: lb://ms-producto-service
+          predicates:
+            - Path=/uploads/**    
 
 

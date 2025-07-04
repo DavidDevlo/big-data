@@ -40,10 +40,10 @@ public class StockSeeder implements CommandLineRunner {
 
             if (almacen1.isPresent() && almacen2.isPresent()) {
                 List<Stock> stocks = List.of(
-                        new Stock(null, 234, almacen1.get(), 1),
-                        new Stock(null, 120, almacen2.get(), 2),
-                        new Stock(null, 500, almacen3.get(), 3),
-                        new Stock(null, 75, almacen4.get(), 4),
+                        new Stock(null, 70, almacen1.get(), 1),
+                        new Stock(null, 70, almacen2.get(), 1),
+                        new Stock(null, 70, almacen3.get(), 2),
+                        new Stock(null, 75, almacen4.get(), 2),
                         new Stock(null, 600, almacen5.get(), 5),
                         new Stock(null, 75, almacen6.get(), 6),
                         new Stock(null, 75, almacen7.get(), 7),

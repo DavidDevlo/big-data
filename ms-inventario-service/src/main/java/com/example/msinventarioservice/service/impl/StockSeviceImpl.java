@@ -51,22 +51,30 @@ public  class StockSeviceImpl implements StockService {
 
     @Override
     public Stock Save(StockDto dto) {
+        // 1. Buscar almacén
         Almacen almacen = almacenRepository.findById(dto.getAlmacen())
                 .orElseThrow(() -> new RuntimeException("Almacén no encontrado"));
 
-        ProductoDto productoDto = productoFeing.buscarProducto(dto.getId()).getBody();
-        if (productoDto == null) {
-            throw new RuntimeException("Producto no encontrado");
-        }
+        // 2. Buscar producto por ID CORRECTO
+        Integer productoId = dto.getProductoId();
+        if (productoId == null)
+            throw new RuntimeException("ProductoId no puede ser null");
 
+        ProductoDto productoDto = productoFeing.buscarProducto(productoId).getBody();
+
+        if (productoDto == null || productoDto.getId() == null)
+            throw new RuntimeException("Producto no encontrado");
+
+        // 3. Crear nuevo stock
         Stock stock = new Stock();
         stock.setAlmacen(almacen);
         stock.setCantidad(dto.getCantidad());
-        stock.setProductoId(dto.getId());
-        stock.setProductoDto(productoDto); // solo para mostrar al cliente
+        stock.setProductoId(productoId);
+        stock.setProductoDto(productoDto); // solo para mostrar en response
 
         return stockRepository.save(stock);
     }
+
 
 
     @Override

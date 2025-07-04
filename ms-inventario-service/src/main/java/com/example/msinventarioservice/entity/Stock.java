@@ -12,8 +12,8 @@ public class Stock {
     private Integer id;
     private int cantidad;
 
-    @OneToOne
-    @JoinColumn(name = "alamcen_id")
+    @ManyToOne
+    @JoinColumn(name = "almacen_id") // corrige el typo también
     private Almacen almacen;
 
     private Integer productoId;
